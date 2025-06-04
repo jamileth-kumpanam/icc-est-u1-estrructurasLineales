@@ -2,36 +2,35 @@ package controllers;
 
 import java.util.EmptyStackException;
 
-import models.Node;
+import models.NodeGeneric;
 
-public class Stack {
+public class StackG<T> {
 
-    private Node top; //nodo cima de la pila
     private int size;
+    private NodeGeneric<T> top;
 
-    public Stack() {
-        this.top = null;
+    public StackG(){
         this.size = 0;
+        this.top = null;
     }
 
-    //metodo que ingrese un valor
-    public void push(int value){
-        Node newNode = new Node (value);
+        public void push(T value){
+        NodeGeneric newNode = new NodeGeneric<T>(value);
         newNode.setNext(top);
         top = newNode;
     
     }
 
-    public int pop(){
-        if(isEmpty()){
-            throw new EmptyStackException();
-        }
-        int value = top.getValue();
-        top = top.getNext();
-        return value;
+    public T pop() {
+    if (isEmpty()) {
+        throw new EmptyStackException();
+    }
+    T value = top.getValue();
+    top = top.getNext();
+    return value;
     }
 
-    public int peek(){
+    public T peek(){
         if(isEmpty()){
             throw new EmptyStackException();
         }
@@ -49,7 +48,7 @@ public class Stack {
     }
 
     System.out.println("Elementos en la pila:");
-    Node current = top;
+    NodeGeneric current = top;
     while (current != null) {
         System.out.println(current.getValue());
         current = current.getNext();
@@ -57,7 +56,7 @@ public class Stack {
 }
 
     public String size() {
-    Node aux = top;
+    NodeGeneric aux = top;
     int cont = 0;
     while (aux != null) {
         System.out.print(aux.getValue() + " "); // Esto imprime los valores de la pila (opcional)
@@ -65,8 +64,5 @@ public class Stack {
         aux = aux.getNext(); // Avanzar al siguiente nodo
     }
     return "Tamaño de la pila: " + cont;
-}
-
-    
-    
+}  
 }
