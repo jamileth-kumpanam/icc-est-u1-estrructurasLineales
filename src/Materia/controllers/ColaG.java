@@ -1,64 +1,65 @@
-package controllers;
+package Materia.controllers;
 
 import java.util.EmptyStackException;
 
-import models.Node;
+import Materia.models.NodeGeneric;
 
-public class Cola {
+public class ColaG<T> {
 
-    private Node primero;
-    private Node ultimo;
-    public int size;
+    private NodeGeneric<T> primero;
+    private NodeGeneric<T> ultimo;
+    private int size;
 
-    public Cola() {
+    public ColaG() {
         this.primero = null;
         this.ultimo = null;
         this.size = 0;
     }
 
-    public void add(int value){
-
-        Node newNode = new Node(value);
-        if (isEmpty()){
+    public void add(T value) {
+        NodeGeneric<T> newNode = new NodeGeneric<>(value);
+        if (isEmpty()) {
             primero = newNode;
             ultimo = newNode;
-        }else{
+        } else {
             ultimo.setNext(newNode);
             ultimo = newNode;
         }
+        size++;
     }
 
-    public int remove(){
-        if(isEmpty()){
+    public T remove() {
+        if (isEmpty()) {
             throw new EmptyStackException();
         }
 
-        int value = primero.getValue();
-
+        T value = primero.getValue();
         primero = primero.getNext();
+        size--;
         return value;
     }
 
-    public int peek(){
-        if (isEmpty()){
+    public T peek() {
+        if (isEmpty()) {
             throw new EmptyStackException();
         }
-
-        int value = primero.getValue();
-        return value;
+        return primero.getValue();
     }
 
     public boolean isEmpty() {
         return primero == null;
     }
 
+    public int size() {
+        return size;
+    }
+
     public void printCola() {
-        Node actual = primero;
+        NodeGeneric<T> actual = primero;
         while (actual != null) {
             System.out.print(actual.getValue() + " ");
             actual = actual.getNext();
         }
         System.out.println();
     }
-    
 }

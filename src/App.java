@@ -1,8 +1,8 @@
-import controllers.Cola;
-import controllers.Stack;
-import controllers.StackG;
-import models.Persona;
-import controllers.ColaG;
+import Materia.controllers.Cola;
+import Materia.controllers.ColaG;
+import Materia.controllers.Stack;
+import Materia.controllers.StackG;
+import Materia.models.Persona;
 
 public class App {
     public static void main(String[] args) throws Exception {
